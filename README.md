@@ -23,13 +23,6 @@ The UI follows the [reference layout](https://postimg.cc/5HkMdDYR): **CSS Grid**
 cd server && npm install && npm start
 ```
 
-Optional: live Finnhub data (free API key from [finnhub.io](https://finnhub.io/register)):
-
-```bash
-export FINNHUB_API_KEY=your_token
-npm start
-```
-
 **Terminal 2 — Angular app**:
 
 ```bash
@@ -38,47 +31,3 @@ npm start
 ```
 
 Open `http://localhost:4200/`. The client expects the WebSocket at `ws://localhost:8080` (see `src/environments/environment.ts`).
-
-Shortcut from the project root:
-
-```bash
-npm run server
-```
-
-## Mock-only (no Node server)
-
-In `src/environments/environment.ts`, set `useMock: true`, then run `npm start`.
-
-## Build
-
-```bash
-npm run build
-```
-
-Output is under `dist/stock-dashboard/`.
-
-## Push to GitHub for review
-
-From the `stock-dashboard` directory (this repo root):
-
-```bash
-git status
-git add .
-git commit -m "Add real-time stock dashboard with WebSocket server"
-```
-
-Create a new empty repository on GitHub (no README/license if you already have them locally), then:
-
-```bash
-git remote add origin https://github.com/<your-username>/<your-repo>.git
-git branch -M main
-git push -u origin main
-```
-
-Share the repository URL with the reviewer.
-
-## Tests
-
-```bash
-npm test
-```
