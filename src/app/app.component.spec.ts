@@ -1,10 +1,21 @@
 import { TestBed } from '@angular/core/testing';
+import { NEVER } from 'rxjs';
 import { AppComponent } from './app.component';
+import { StockFeedService } from './services/stock-feed.service';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent],
+      providers: [
+        {
+          provide: StockFeedService,
+          useValue: {
+            connect: (): void => undefined,
+            quotes$: NEVER,
+          },
+        },
+      ],
     }).compileComponents();
   });
 
@@ -14,16 +25,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'stock-dashboard' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('stock-dashboard');
-  });
-
-  it('should render title', () => {
+  it('should render header', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, stock-dashboard');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Real-time stocks');
   });
 });
